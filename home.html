@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VL transport </title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .page {
+            padding: 30px;
+        }
+
+        .cars {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .car {
+            background: white;
+            width: 250px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px gray;
+        }
+
+        .car img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #222;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form {
+            background-color: white;
+            width: 350px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #message {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HOME PAGE -->
+
+<div id="homePage">
+
+    <h1>🚗 Car Rental</h1>
+
+    <div class="page">
+
+        <h2>Available Cars</h2>
+
+        <div class="cars">
+
+            <div class="car">
+                <img src="honda.jpg">
+                <h3>Honda City</h3>
+                <p>₹2500 / Day</p>
+                <button onclick="openBooking('Honda City')">
+                    Book Now
+                </button>
+            </div>
+
+            <div class="car">
+                <img src="BMW.jpg">
+                <h3>BMW</h3>
+                <p>₹5000 / Day</p>
+                <button onclick="openBooking('BMW')">
+                    Book Now
+                </button>
+            </div>
+
+            <div class="car">
+                <img src="TATA.jpg">
+                <h3>TATA </h3>
+                <p>₹2500 / Day</p>
+                <button onclick="openBooking('TATA')">
+                    Book Now
+                </button>
+            </div>
+
+              <div class="car">
+                <img src="Mahindra Thar.jpg">
+                <h3>Mahindra Thar</h3>
+                <p>₹4000 / Day</p>
+                <button onclick="openBooking('Mahindra Thar')">
+                   Book Now
+                </button>
+            </div>
+
+            <div class="car">
+                <img src="Maruti Suzuki.jpg">
+                <h3>Maruti Suzuki</h3>
+                <p>₹4000 / Day</p>
+                <button onclick="openBooking('Maruti Suzuki')">
+                    Book Now
+                </button>
+            </div>
+
+            <div class="car">
+                <img src="Kia.jpg">
+                <h3>Kia</h3>
+                <p>₹5000 / Day</p>
+                <button onclick="openBooking('Kia')">
+                   Book Now
+                </button>
+            </div>
+
+            <div class="car">
+                <img src="Toyota.jpg">
+                <h3>Toyota</h3>
+                <p>₹6000 / Day</p>
+                <button onclick="openBooking('Toyota')">
+                   Book Now
+                </button>
+            </div>
+           
+            <div class="car">
+                <img src="Rolls Royce.jpg">
+                <h3>Rolls Royce</h3>
+                <p>₹7000 / Day</p>
+                <button onclick="openBooking('Rolls Royce')">
+                   Book Now
+                </button>
+            </div>
+
+              <div class="car">
+                <img src="Ferrari F40.jpg">
+                <h3>Ferrari F40</h3>
+                <p>₹7000 / Day</p>
+                <button onclick="openBooking('Ferrari F40')">
+                   Book Now
+                </button>
+            </div>
+          <div class="car">
+                <img src="Jeep.jpg">
+                <h3>Jeep</h3>
+                <p>₹3500 / Day</p>
+                <button onclick="openBooking('Jeep')">
+                   Book Now
+                </button>
+            </div>
+         
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- BOOKING PAGE -->
+
+<div id="bookingPage" style="display:none;">
+
+    <h1>🚗 Booking</h1>
+
+    <div class="page">
+
+        <form onsubmit="confirmBooking(event)">
+
+            <h2>Book Your Car</h2>
+
+            <input type="text"
+                   id="name"
+                   placeholder="Enter Your Name"
+                   required>
+
+            <input type="tel"
+                   id="mobile"
+                   placeholder="Enter Mobile Number"
+                   required>
+
+            <input type="text"
+                   id="selectedCar"
+                   readonly>
+
+            <input type="date"
+                   id="date"
+                   required>
+
+            <input type="number"
+                   id="days"
+                   placeholder="Number of Days"
+                   min="1"
+                   required>
+
+            <button type="submit">
+                Confirm Booking
+            </button>
+
+            <p id="message"></p>
+
+        </form>
+
+        <button onclick="goHome()">
+            ← Back to Cars
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function openBooking(carName) {
+
+        document.getElementById("homePage").style.display = "none";
+
+        document.getElementById("bookingPage").style.display = "block";
+
+        document.getElementById("selectedCar").value = carName;
+    }
+
+
+    function goHome() {
+
+        document.getElementById("bookingPage").style.display = "none";
+
+        document.getElementById("homePage").style.display = "block";
+    }
+
+
+    function confirmBooking(event) {
+
+        event.preventDefault();
+
+        let name = document.getElementById("name").value;
+
+        let car = document.getElementById("selectedCar").value;
+
+        document.getElementById("message").innerHTML =
+            "✅ Booking Successful!<br>" +
+            name + ", your " + car + " is booked.";
+
+    }
+
+</script>
+
+</body>
+</html>
